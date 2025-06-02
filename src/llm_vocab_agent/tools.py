@@ -3,7 +3,7 @@ from langchain.tools import tool
 from langchain_core.output_parsers import StrOutputParser
 
 from llm_vocab_agent.llms import llm
-from llm_vocab_agent.models import SubstantivList, VerbList
+from llm_vocab_agent.models import AdjektivList, SubstantivList, VerbList
 
 
 @tool
@@ -51,12 +51,31 @@ async def get_substantiv(n: int):
     return str(result)
 
 
+@tool
+async def get_adjektiv(n: int):
+    """
+    Возвращает n прилагательных немецкого языка
+    """
+
+    prompt = ChatPromptTemplate.from_template(
+        """Вы очень опытный преподаватель немецкого языка.
+        Вам необходимо вернуть {n} прилагательных немецкого языка.
+        """
+    )
+
+    chain = prompt | llm.with_structured_output(AdjektivList) | StrOutputParser()
+
+    result = chain.invoke(input={"n": n})
+
+    return str(result)
+
+
 if __name__ == "__main__":
     import asyncio
 
     async def main():
-        result = await get_verbs.ainvoke({"n": 5})
+        result = await get_adjektiv.ainvoke({"n": 3})
 
-        print(result)
+        print(result, end="\n\n")
 
     asyncio.run(main())
