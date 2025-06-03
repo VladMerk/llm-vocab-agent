@@ -3,7 +3,7 @@ from langchain.tools import tool
 from langchain_core.output_parsers import StrOutputParser
 
 from llm_vocab_agent.llms import llm
-from llm_vocab_agent.models import AdjektivList, SubstantivList, VerbList
+from llm_vocab_agent.models import AdjektivList, AdverbList, SubstantivList, VerbList
 
 
 @tool
@@ -70,11 +70,30 @@ async def get_adjektiv(n: int):
     return str(result)
 
 
+@tool
+async def get_adverb(n: int):
+    """
+    Возвращает n наречий немецкого языка
+    """
+
+    prompt = ChatPromptTemplate.from_template(
+        """Вы очень опытный преподаватель немецкого языка.
+        Вам необходимо вернуть {n} наречий немецкого языка.
+        """
+    )
+
+    chain = prompt | llm.with_structured_output(AdverbList) | StrOutputParser()
+
+    result = chain.invoke(input={"n": n})
+
+    return str(result)
+
+
 if __name__ == "__main__":
     import asyncio
 
     async def main():
-        result = await get_adjektiv.ainvoke({"n": 3})
+        result = await get_adverb.ainvoke({"n": 3})
 
         print(result, end="\n\n")
 

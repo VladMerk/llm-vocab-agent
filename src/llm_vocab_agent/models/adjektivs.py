@@ -9,7 +9,7 @@ class Adjektiv(BaseModel):
     )
 
     def __str__(self):
-        examples = "\n#".join(self.examples)
+        examples = "\n# ".join(self.examples)
         return f"{self.word} - {self.translate}\n{examples}"
 
 
