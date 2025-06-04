@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [tool.poetry]
-packages = [{include = "llm_foreign_words", from = "src"}]
+packages = [{include = "llm_vocab_agent", from = "src"}]
 
 
 [tool.poetry.group.dev.dependencies]
