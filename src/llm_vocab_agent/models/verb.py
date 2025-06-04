@@ -43,10 +43,12 @@ class Verb(BaseModel):
     )
 
     def __str__(self):
+        rektion_part = f" {self.rektion}" if self.rektion else ""
+        note_part = f"\n## {self.note}" if self.note else ""
         return (
-            f"# {self.word}{" " + f"{self.rektion}" if self.rektion is not None else ""} - {self.translate}"
+            f"# {self.word}{rektion_part} - {self.translate}"
             f" - {self.prateritum} - {self.partizip_ii}"
-            f"{((f"\n## {self.note}") if self.note is not None else "")}"
+            f"{note_part}"
         )
 
 
