@@ -27,7 +27,7 @@ async def get_verbs(n: int):
 
     chain = prompt | llm.with_structured_output(VerbList) | StrOutputParser()
 
-    result = chain.invoke(input={"n": n})
+    result = await chain.ainvoke(input={"n": n})
 
     return str(result)
 
@@ -46,7 +46,7 @@ async def get_substantiv(n: int):
 
     chain = prompt | llm.with_structured_output(SubstantivList) | StrOutputParser()
 
-    result = chain.invoke(input={"n": n})
+    result = await chain.ainvoke(input={"n": n})
 
     return str(result)
 
@@ -65,7 +65,7 @@ async def get_adjektiv(n: int):
 
     chain = prompt | llm.with_structured_output(AdjektivList) | StrOutputParser()
 
-    result = chain.invoke(input={"n": n})
+    result = await chain.ainvoke(input={"n": n})
 
     return str(result)
 
@@ -84,7 +84,7 @@ async def get_adverb(n: int):
 
     chain = prompt | llm.with_structured_output(AdverbList) | StrOutputParser()
 
-    result = chain.invoke(input={"n": n})
+    result = await chain.ainvoke(input={"n": n})
 
     return str(result)
 
