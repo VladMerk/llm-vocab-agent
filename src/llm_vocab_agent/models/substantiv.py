@@ -35,6 +35,7 @@ class Substantiv(BaseModel):
             f"# {self.word} - {self.translate}, {self.genetiv}, {self.plural}"
             f"\n\t{self.gender.value}, {self.level}"
             f"\n\t{examples}\n\t{self.note}"
+
         )
 
 
