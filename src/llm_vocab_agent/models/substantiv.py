@@ -33,7 +33,7 @@ class Substantiv(BaseModel):
         return (
             f"# {self.word} - {self.translate}, {self.genetiv}, {self.plural}"
             f"\n\t{self.gender.value}, {self.level}"
-            f"\n\t{"\n\t".join(self.example)}\n\t{self.note}"
+            f"\n\t{'\n\t'.join(self.example)}\n\t{self.note}"
         )
 
 
